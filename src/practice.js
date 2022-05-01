@@ -75,23 +75,26 @@ console.log(numberA + numberB); // 덧셈은 문자열로 결과 값을 준다.
 console.log(numberA + parseInt(numberB)); // parseInt 함수는 문자열의 숫자를 숫자형으로 변환해준다.
 
 // 4. 연산자
-// 산술 연산자
+// 4-1. 대입 연산자
+let A = 1; // 변수에 값을 넣는 역할을 하는 연산자.
+
+// 4-2. 산술 연산자 (사칙 연산)
 let a = 1;
 let b = 2;
 
 console.log(a + b);
 console.log(a - b);
 console.log(a * b);
-console.log(a / b);
-console.log(a % b);
+console.log(a / b); // 몫
+console.log(a % b); // 나머지
 
-// 연결 연산자
+// 4-3. 연결 연산자 (문자열 + 문자열)
 let c = "1";
 let d = 2; // 묵시적 형변환
 
 console.log(c + d);
 
-// 복합 연산자
+// 4-4. 복합 연산자
 let e = 5;
 
 // e = e + 10;
@@ -102,9 +105,57 @@ e /= 2;
 
 console.log(e);
 
-// 증감 연산자 (숫자형에만 사용 가능)
+// 4-5. 증감 연산자 (숫자형에만 사용 가능)
 let f = 10;
 
 f++;
-
 console.log(f);
+
+f--;
+console.log(f);
+
+// 전위 연산과 후위 연산의 차이
+console.log(++f); // 가장 먼저 적용
+console.log(f++); // 라인이 끝나고 나서 적용
+console.log(f);
+
+// 4-6. 논리 연산자
+console.log(!true); // NOT
+console.log(true && true); // AND - 둘 다 참일 때만 참.
+console.log(false || false); // OR - 둘 다 거짓일 때만 거짓.
+
+// 4-7. 비교 연산자
+// = 같은지 비교
+let compareA = 1 == "1";
+console.log(compareA); // 타입이 다르더라도 값만 비교하기 때문에 true
+
+compareA = 1 === "1"; // 타입까지 비교하고 싶을 때
+console.log(compareA);
+
+let compareB = 2 != "2";
+console.log(compareB);
+
+compareB = 2 !== "2";
+console.log(compareB); // 같지 않다기 때문에 true
+
+// <> 크고 작음 비교
+let compareC = 1 > 2;
+console.log(compareC);
+
+compareC = 2 <= 2;
+console.log(compareC);
+
+// 4-8. 타입을 알 수 있는 연산자
+let compareD = 1;
+compareD = "1";
+// 숫자형을 넣었다가 문자열을 넣어도 상관 없는 동적 타입 언어
+
+console.log(typeof compareD); // typeof 를 사용하여 타입형 알려주기
+
+// 4-9. null 병합 연산자
+// g 라는 변수에 값이 없다면 10을 대입하고, 값이 있다면 그대로 그 값을 대입해라.
+// 라는 조건을 어떻게 작성할까요?
+let g;
+
+g = g ?? 10; // ?? 를 이용한다. ?? -> null 병합 연산자이다. 양쪽 피 연산자 중 null 이나 undefined 이 아닌 값을 선택한다.
+console.log(g); // 10이 나온다.
