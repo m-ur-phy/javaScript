@@ -223,3 +223,40 @@ let area1 = getArea(1, 200); // 함수 호출
 
 console.log("area : ", area1);
 console.log("함수 실행 완료");
+
+// 7. 함수 표현식
+let hello = function () {
+  // 변수가 함수를 담을수도 있다.
+  // 이렇게 변수에 함수를 담아서 사용하는 것을 함수 표현식이라고 한다.
+  return "안녕하세요 여러분";
+};
+
+const helloText = hello(); // helloText 는 hello() 를 호출한 결과값이 된다.
+console.log(helloText);
+
+// 선언식과 표현식의 차이는???
+
+console.log(helloB()); // 어 위에서도 호출이 되네, 호이스팅 (함수 선언식으로 만들어진 함수는 프로그램의 최상단에 위치)
+// console.log(helloA()); // 어 안되네
+
+// 함수 표현식
+let helloA = function () {
+  return "안녕하세요 여러분";
+};
+
+console.log(helloA()); // 표현식으로 완성된 함수는 초기화 된 다음에 사용할 수 있다.
+
+// 함수 선언식
+function helloB() {
+  return "안녕하세요 여러분";
+}
+
+// 함수 표현식을 더 간략하게 쓸 수 있는 방법
+// 화살표 함수
+
+let helloC = () => {
+  return "안녕하세요 여러분";
+}; // 화살표 함수
+
+let helloD = () => "안녕하세요 여러분"; // "안녕하세요 여러분"만 반환한다면 이렇게도 사용할 수 있다.
+// 화살표 함수 또한 호이스팅의 대상이 아니기 때문에 순서를 잘 지켜서 사용해야함
