@@ -159,3 +159,52 @@ let g;
 
 g = g ?? 10; // ?? 를 이용한다. ?? -> null 병합 연산자이다. 양쪽 피 연산자 중 null 이나 undefined 이 아닌 값을 선택한다.
 console.log(g); // 10이 나온다.
+
+// 5. 조건문
+// 5-1. if
+
+let h = 5;
+
+if (h >= 7) {
+  console.log("7 이상입니다.");
+} else if (h >= 5) {
+  console.log("5 이상입니다.");
+} else {
+  console.log("5 미만입니다.");
+}
+
+// 5-2. switch (두 자리 국가코드 받기)
+
+/* if 문으로 만든 두 자리 국가코드
+let country = "ko";
+
+if (country === "ko") {
+  console.log("한국");
+} else if (country === "cn") {
+  console.log("중국");
+} else if (country === "jp") {
+  console.log("일본");
+} else {
+  console.log("미분류");
+}
+*/
+
+let country = "ko";
+
+switch (country) {
+  case "ko":
+    console.log("한국");
+    break;
+  case "cn":
+    console.log("중국");
+    break;
+  case "jp":
+    console.log("일본");
+    break;
+  case "uk":
+    console.log("영국");
+    break;
+  default:
+    console.log("미분류");
+    break;
+}
