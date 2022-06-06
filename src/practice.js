@@ -208,3 +208,18 @@ switch (country) {
     console.log("미분류");
     break;
 }
+
+// 6. 함수
+// 직사각형 10개의 넓이를 구하는 프로그램을 만든다면???
+function getArea(widthR, heightR) {
+  let area = widthR * heightR;
+  return area; // 값 반환
+  // console.log(area); // 콘솔로 보여주기
+} // 함수 선언식, 함수 선언 방식의 함수 생성
+
+let area1 = getArea(1, 200); // 함수 호출
+
+// console.log(area); // 지역변수이므로 불러올 수 없음
+
+console.log("area : ", area1);
+console.log("함수 실행 완료");
