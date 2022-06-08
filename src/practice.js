@@ -260,3 +260,32 @@ let helloC = () => {
 
 let helloD = () => "안녕하세요 여러분"; // "안녕하세요 여러분"만 반환한다면 이렇게도 사용할 수 있다.
 // 화살표 함수 또한 호이스팅의 대상이 아니기 때문에 순서를 잘 지켜서 사용해야함
+
+// 8. 콜백 함수
+// 어떤 다른 함수에 매개변수로 함수를 넘겨준 것을 말함
+
+// 기분에 따라 다른 동작을 하는 함수를 만들어보자
+function checkMood(mood, goodCallback, badCallback) {
+  if (mood === "good") {
+    // 기분 좋을 때 하는 동작
+    goodCallback();
+  } else {
+    // 기분 안 좋을 때 하는 동작
+    badCallback();
+  }
+}
+
+function cry() {
+  console.log("ACTION :: CRY");
+}
+
+function sing() {
+  console.log("ACTION :: SING");
+}
+
+function dance() {
+  console.log("ACTION :: DANCE");
+}
+
+checkMood("sad", sing, cry);
+// 콜백 함수를 사용하면 유연한
