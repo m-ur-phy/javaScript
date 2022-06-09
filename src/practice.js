@@ -435,3 +435,152 @@ const peopleValues = Object.values(people); // object.values 함수를 이용하
 for (let jj = 0; jj < peopleValues.length; jj++) {
   console.log(peopleValues[jj]);
 }
+
+// 12. 배열 내장함수
+// 배열 내장함수를 이용하면, for 문과 if 문의 의존성을 줄여 더 유연하고 깔끔한 코드를 완성할 수 있음
+
+// 배열 내장함수 1 forEach
+// 내장함수를 이용해서 배열 순회하기 forEach
+const Arr = [1, 2, 3, 4];
+
+Arr.forEach(function (elm) {
+  console.log(elm);
+});
+
+// Arr.forEach((elm) => console.log(elm)); 과 같음
+
+// 배열 내장함수 2 map
+// 새로운 배열에 Arr 상수배열의 모든 요소에 *2를 한 값을 넣는 프로그램 만들기 Map
+// map 은 해당하는 배열에 모두 콜백함수를 수행한다고 생각하면 된다
+const newArr = Arr.map((elm) => {
+  return elm * 2;
+});
+
+console.log(newArr);
+
+// 배열 내장함수 3 includes
+// 배열에 어떤 값이 있다면 true, 없다면 false 를 반환하는 프로그램 includes
+
+let number = 3;
+
+console.log(Arr.includes(number)); // === 을 기준으로
+
+// 배열 내장함수 4 indexOf
+// 인덱스를 출력하기 indexOf
+console.log(Arr.indexOf(number)); // 배열에 값이 없다면 -1을 반환 (0부터 시작)
+
+// 배열 내장함수 5 findIndex
+// 객체도 포함한 복잡한 배열이라면??? 원하는 속성을 갖는 (예를들어 색깔이 빨강인?) 값을 찾고싶다면?
+// findIndex
+const colorArr = [
+  { color: "red" },
+  { color: "black" },
+  { color: "blue" },
+  { color: "green" },
+  { color: "blue" }
+];
+
+console.log(colorArr.findIndex((elm) => elm.color === "blue")); // 파라미터는 콜백함수를 넣어주면됨
+
+/* 위 코드는 다음과 같다
+console.log(
+  colorArr.findIndex((elm) => {
+    return elm.color === "blue"; // 일치하는 요소가 두개라면 가장 먼저의 인덱스를 반환
+  })
+)
+*/
+
+// 배열 내장함수 6 find
+// findIndex는 인덱스를 반환. 직접적인 요소를 찾고싶다면??? find
+
+// findIndex 를 사용한 방법 (인덱스를 반환 !!!)
+const idx = colorArr.findIndex((elm) => {
+  return elm.color === "blue";
+});
+
+console.log(colorArr[idx]);
+
+// find 를 사용한 방법 (요소 자체를 반환!!!)
+const ele = colorArr.find((elm) => {
+  return elm.color === "blue";
+});
+
+console.log(ele);
+
+// 배열 내장함수 7 filter
+// 필터링
+const colorArr2 = [
+  { num: 1, color: "red" },
+  { num: 2, color: "black" },
+  { num: 3, color: "blue" },
+  { num: 4, color: "green" },
+  { num: 5, color: "blue" }
+];
+
+console.log(colorArr2.filter((elm) => elm.color === "blue"));
+// filter 메서드는 전달한 콜백함수가 true 를 반환하는 모든 요소를 배열로 반환하는 메서드
+
+// 배열 내장함수 8 slice
+// 배열 자르기
+console.log(colorArr2.slice(0, 2)); // (시작, 끝) 끝은 -1로 적용됨
+
+// 배열 내장함수 9 concat
+// 배열 붙이기
+const colorArr3 = [
+  { num: 1, color: "red" },
+  { num: 2, color: "black" }
+];
+
+const colorArr4 = [
+  { num: 3, color: "blue" },
+  { num: 4, color: "green" },
+  { num: 5, color: "blue" }
+];
+
+console.log(colorArr3.concat(colorArr4));
+
+// 배열 내장함수 10 sort
+// 배열 정렬하기
+// 문자형 배열
+let chars = ["나", "다", "가"];
+
+chars.sort(); // 원본 배열의 순서 자체를 정렬
+
+console.log(chars);
+
+// 숫자형 배열에는 sort가 ...
+let numbers = [1, 0, 9999, 5, 2, 555, 33, 20];
+
+// numbers.sort(); // sort 는 사전순으로 정렬하기 때문에 앞 숫자만을 기준으로 값이 나타난다.
+
+// console.log(numbers); [0, 1, 2, 20, 33, 5, 555, 9999]
+
+// 그렇다면 어떻게? sort 메서드의 인자로 비교함수를 만들어서 넣어주면 된다.
+const compare = (a, b) => {
+  // 1. 같다
+  // 2. 크다
+  // 3. 작다
+
+  if (a > b) {
+    // 크다
+    return 1;
+  }
+
+  if (a < b) {
+    // 작다
+    return -1;
+  }
+
+  // 같다
+  return 0;
+}; // 비교 함수 (오름차순) 완성!~!~!
+
+numbers.sort(compare);
+console.log(numbers);
+
+// 배열 내장함수 11 join
+// 하나의 배열 안에있는 인자 하나하나를 합쳐서 출력하고싶은데여...
+
+const pha = ["비바", "라", "비다", "-", "콜드", "플레이"];
+
+console.log(pha.join("WoW"));
