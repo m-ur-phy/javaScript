@@ -298,7 +298,7 @@ let person = new Object(); // 객체 생성자 방식
 let human = {}; // 객체 리터럴 방식
 
 // 객체
-let i = {
+let ii = {
   key1: "value1", // 프로퍼티 (객체 프로퍼티)
   key2: "value2",
   key3: true,
@@ -307,7 +307,7 @@ let i = {
   key6: function () {}
 };
 
-console.log(i.key1); // 프로퍼티 접근법 1. 점 표기법
+console.log(ii.key1); // 프로퍼티 접근법 1. 점 표기법
 
 let personInfo1 = {
   name: "m-ur-phy",
@@ -394,3 +394,44 @@ console.log(arr3);
 
 // 배열 길이 받아오기
 console.log(arr3.length);
+
+// 11. 반복문
+// for 반복문
+for (let i = 1; i <= 100; i++) {
+  //(초기식(반복의 주체가되는 변수 선언), 조건식(반복이 이 조건을 만족할때만 돌아가라), 연산(반복이 수행할때마다 할 연산))
+  // 반복 수행할 명령
+  console.log("m-ur-phy");
+}
+
+// 배열을 순회할 때 유용하게 사용
+const arrr = ["a", "b", "c"];
+
+for (let iii = 0; iii < arrr.length; iii++) {
+  console.log(arrr[iii]);
+}
+
+// 객체 순회하기
+let people = {
+  name: "m-ur-phy",
+  age: 25,
+  tall: 180
+};
+
+const peopleKeys = Object.keys(people);
+console.log(peopleKeys); // 오브젝트 키 함수에 객체 자체를 넣어주면 배열로 반환해줌
+
+for (let j = 0; j < peopleKeys.length; j++) {
+  console.log(peopleKeys[j]);
+
+  const curKey = peopleKeys[j];
+  const curValue = people[curKey];
+
+  console.log(`${curKey} : ${curValue}`);
+}
+
+// 만약 value 값만 뽑고싶다면??????
+const peopleValues = Object.values(people); // object.values 함수를 이용하여 반환
+
+for (let jj = 0; jj < peopleValues.length; jj++) {
+  console.log(peopleValues[jj]);
+}
