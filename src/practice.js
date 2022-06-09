@@ -288,7 +288,7 @@ function dance() {
 }
 
 checkMood("sad", sing, cry);
-// 콜백 함수를 사용하면 유연한
+// 콜백 함수를 사용하면 유연함
 
 // 9. 객체
 // 객체 생성 방식 1
@@ -370,3 +370,27 @@ personInfo3.say();
 console.log(person.gender); // 존재하지 않는 프로퍼티의 접근은 최대한 안하는 것이 선호됨
 console.log(`name : ${"name" in personInfo3}`); // 그래서 객체 내에 프로퍼티가 존재하는지 확인하는 방법
 console.log(`gender : ${"gender" in person}`); // in 연산자를 사용해서 프로퍼티의 존재여부를 불리언으로 확인할 수 있다.
+
+// 10. 배열
+// 비원시자료인 배열
+// 배열 만들기
+let ar = new Array(); // 생성자 호출방식
+let arr = []; // 배열 리터럴
+
+let arr1 = [1, 2, 3, 4];
+console.log(arr1);
+
+let arr2 = [1, "2", true, null, undefined, {}, [], function () {}]; // 다양한 형태를 넣을 수 있다.
+console.log(arr2);
+
+let arr3 = [1, 2, 3, 4, 5];
+console.log(arr3[0]); // 배열은 인덱스(배열에 위치한 순서)로 접근
+console.log(arr3[1]);
+
+// 배열 요소 추가하기 (가장 마지막에 추가된다)
+arr3.push(6);
+arr3.push({ key: "value" });
+console.log(arr3);
+
+// 배열 길이 받아오기
+console.log(arr3.length);
