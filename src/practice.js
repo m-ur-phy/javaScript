@@ -289,3 +289,84 @@ function dance() {
 
 checkMood("sad", sing, cry);
 // 콜백 함수를 사용하면 유연한
+
+// 9. 객체
+// 객체 생성 방식 1
+let person = new Object(); // 객체 생성자 방식
+
+// 객체 생성 방식 2
+let human = {}; // 객체 리터럴 방식
+
+// 객체
+let i = {
+  key1: "value1", // 프로퍼티 (객체 프로퍼티)
+  key2: "value2",
+  key3: true,
+  key4: undefined,
+  key5: [1, 2],
+  key6: function () {}
+};
+
+console.log(i.key1); // 프로퍼티 접근법 1. 점 표기법
+
+let personInfo1 = {
+  name: "m-ur-phy",
+  age: 25
+};
+
+console.log(personInfo1["name"]); // 프로퍼티 접근법 2. 괄호 표기법 (꼭 문자열로)
+
+// 괄호 표기법 사용예제
+
+console.log(getPropertyValue("name"));
+
+function getPropertyValue(key) {
+  return personInfo1[key];
+}
+
+// 객체 프로퍼티 추가 삭제
+
+let personInfo2 = {
+  name: "m-ur-phy",
+  age: 25
+};
+
+personInfo2.location = "korea"; // 프로퍼티 추가
+personInfo2["gender"] = "f"; // 괄호 표기법을 이용한 프로퍼티 추가
+
+personInfo2.name = "murphy"; // 프로퍼티 수정
+personInfo2["age"] = 20; // 괄호 표기법을 이용한 프로퍼티 수정
+
+delete personInfo2.age; // 프로퍼티 삭제
+delete personInfo2["name"]; // 괄호 표기법을 이용한 프로퍼티 삭제
+// 이러한 방식은 실제 객체와 프로퍼티간의 연결을 끊을 뿐 메모리가 지워지진 않는다.
+// 그렇기 때문에 아래 방식을 더 선호한다.
+
+personInfo2.gender = null;
+
+console.log(personInfo2);
+
+/*
+const personInfo2 = {
+  name: "m-ur-phy",
+  age: 25
+};
+는 오류가 나지 않을까? 상수잖아!
+
+그렇지 않다. 프로퍼티 값을 수정하는 행위는 personInfo2 자체를 수정하는 행위가 아니기 때문이다.
+*/
+
+// 객체 프로퍼티가 함수인 경우
+const personInfo3 = {
+  name: "수수께끼", // 멤버
+  age: 23, // 멤버
+  say: function () {
+    console.log(`i'm 23 난 ${this.name}`); // 백틱 사용하기
+  } // 객체 프로퍼티로 함수를 담는 것을 메서드(방법)라고한다.
+};
+
+personInfo3.say();
+
+console.log(person.gender); // 존재하지 않는 프로퍼티의 접근은 최대한 안하는 것이 선호됨
+console.log(`name : ${"name" in personInfo3}`); // 그래서 객체 내에 프로퍼티가 존재하는지 확인하는 방법
+console.log(`gender : ${"gender" in person}`); // in 연산자를 사용해서 프로퍼티의 존재여부를 불리언으로 확인할 수 있다.
