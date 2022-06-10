@@ -176,3 +176,66 @@ const getMealUp = (mealType) => {
 
 console.log(getMealUp("한식"));
 console.log(getMealUp());
+
+// 5. 비 구조화 할당
+// 배열과 객체를 우아하게 사용하는 방법
+
+// 배열의 비 구조화 할당
+let arr = ["one", "two", "three"];
+
+/* 이 할당 과정을 줄일 수 있다
+let one = arr[0];
+let two = arr[1];
+let three = arr[2];
+*/
+
+let [one, two, three] = arr;
+// 대괄호를 이용해서 배열의 값을 순서대로 할당 받아 사용할 수 있는 것을 바로
+// 배열의 비 구조화 할당이라고 한다.
+// 배열의 기본 변수 비 구조화 할당
+console.log(one, two, three);
+
+// 더 줄이는 방법
+// 배열의 선언 분리 비 구조화 할당
+let [o, t, th, f = "four"] = ["on", "tw", "thr"];
+console.log(o, t, th, f); // 마지막 f 는 할당받지 못함 그래서 f="four" 과 같이 기본 값을 설정해줄 수 있음
+
+// swap
+
+let m = 10;
+let u = 20;
+let tmp = 0;
+console.log(m, u);
+
+/*
+tmp = m;
+m = u;
+u = tmp;
+console.log(m, u); // 값 스왑. 벌써 길다.
+*/
+
+// 비 구조화 할당으로 쉽게 스왑하기
+[m, u] = [u, m];
+console.log(m, u);
+
+// 객체의 비 구조화 할당
+let object = { oneone: "one", twotwo: "two", threethree: "three" };
+
+/* 길다 길어!!!
+let oneone = object.one;
+let twotwo = object.two;
+let threethree = object.three;
+*/
+
+// 비 구조화 할당 이용해서 짧게
+let { oneone, twotwo, threethree } = object; // 키 값을 기준으로 할당 키 값을 입력해야함 (변수명이 강제된다는...)
+console.log(oneone, twotwo, threethree);
+
+// 내 맘대로 변수 할거야
+let {
+  oneone: onew,
+  twotwo: toto,
+  threethree: threee,
+  abc = "newthing"
+} = object; // 여기도 생성시 기본값 설정 가능
+console.log(onew, toto, threee);
