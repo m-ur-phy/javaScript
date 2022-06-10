@@ -128,3 +128,51 @@ const gName = (people) => {
 let people = { name: "m-ur-phy" };
 const nm = gName(people);
 console.log(nm);
+
+// 4. 조건문 업그레이드
+
+// 간결 1
+function isKoreanFood(food) {
+  // (food === "불고기" || food === "비빔밥" || food === "떡볶이") 와 복잡하다 복잡해 더 간결하게 가자 !!!
+  if (["불고기", "떡볶이", "비빔밥"].includes(food)) {
+    // 배열과 내장함수 이용해서 간결하게 !!!
+    return true;
+  }
+  return false;
+}
+
+const food1 = isKoreanFood("불고기");
+const food2 = isKoreanFood("파스타");
+console.log(food1);
+console.log(food2);
+
+// 주어진 값에 따라서 각각 다른 결과를 반환하는 함수 만들기
+// 한식인지, 중식인지, 양식인지를 받고 그것의 대표메뉴를 반환해주는 프로그램
+const getMeal = (mealType) => {
+  if (mealType === "한식") return "불고기";
+  if (mealType === "양식") return "파스타";
+  if (mealType === "중식") return "멘보샤";
+  if (mealType === "일식") return "초밥";
+  return "쫄쫄 굶기";
+};
+
+console.log(getMeal("한식"));
+
+// 아니 전세계를 다 만들라고?!?!?!?
+// 어떡하지..
+
+// 간결 2
+const meal = {
+  한식: "불고기",
+  중식: "멘보샤",
+  일식: "초밥",
+  양식: "스테이크",
+  인도식: "카레"
+};
+
+const getMealUp = (mealType) => {
+  return meal[mealType] || "쫄~쫄~굶기"; // 객체의 괄호표기법으로 간단하게 줄일 수 있다!!!
+};
+
+console.log(getMealUp("한식"));
+console.log(getMealUp());
