@@ -239,3 +239,44 @@ let {
   abc = "newthing"
 } = object; // 여기도 생성시 기본값 설정 가능
 console.log(onew, toto, threee);
+
+// 6. spread 연산자
+// 배열과 객체를 한줄로 펼치는 방법
+// ... 스프레드!
+
+// 객체 중복 프로퍼티 펼치기
+const cookie = {
+  base: "cookie",
+  madeIn: "korea"
+};
+
+// base 와 madeIn 은 계속 중복된다...
+const chocochipCookie = {
+  ...cookie, // ...cookie 를 적어주면...?
+  toping: "chocochip"
+};
+
+const blueberryCookie = {
+  ...cookie,
+  toping: "blueberry"
+};
+
+const strawberryCookie = {
+  ...cookie,
+  toping: "strawberry"
+};
+
+console.log(chocochipCookie);
+console.log(blueberryCookie);
+console.log(strawberryCookie);
+
+// 배열 펼치기
+const noTopingCookies = ["촉촉한쿠키", "안촉촉한쿠키"];
+const topingCookies = ["바나나쿠키", "블루베리쿠키", "딸기쿠키", "초코칩쿠키"];
+
+const allCookies = [
+  ...noTopingCookies,
+  "함정 쿠키다 우하하하",
+  ...topingCookies
+];
+console.log(allCookies);
