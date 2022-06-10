@@ -34,3 +34,70 @@ let person = null; // = { name: "m-ur-phy" };
 // null 값 또한 마찬가지
 const name = getName(person);
 console.log(name);
+
+// 2. 삼항 연산자
+// 조건문 파격적으로 줄이기
+let A = 3;
+
+if (A >= 0) {
+  console.log("양수");
+} else {
+  console.log("음수");
+}
+
+// 위 코드는 다음과 같다
+a >= 0 ? console.log("양수") : console.log("음수");
+// 조건식 ? 참일 때 수행할 식 : 거짓일 때 수행할 식 ;
+
+// 배열을 이용한 예제 (주어진 배열이 비어있는지 확인하고 비어있다면 비어있습니다 를 출력, 그렇지 않다면 비어있지 않습니다를 출력하는 프로그램)
+let ar = [];
+
+if (ar.length === 0) {
+  console.log("빈 배열");
+} else {
+  console.log("안 빈 배열");
+}
+
+ar.length === 0 ? console.log("빈 배열") : console.log("안 빈 배열");
+
+// 위의 예제를 응용하여 값을 참일 때와 거짓일 때를 구분해서 반환하게 만들기
+const arStatus = ar.length === 0 ? "빈 배열" : "안 빈 배열";
+console.log(arStatus);
+
+// 삼항연산자 스마트하게 써보기
+// Truthy 와 Falsy 이용해서~
+
+let b; // undefined 값 = falsy
+
+const result = b ? true : false;
+console.log(result); // false
+
+let br = []; // 배열 값 = truthy
+
+const res = br ? true : false;
+console.log(res);
+
+// 삼항연산자 중첩해서 사용하기
+// TODO : 학점 계산 프로그램
+// 90점 이상 A+
+// 50점 이상 B+
+// 둘 다 아니면 F
+
+let score = 100;
+
+score >= 90
+  ? console.log("A+")
+  : score >= 50
+  ? console.log("B+")
+  : console.log("F");
+
+// 삼항연산자가 더 많아지게 되면 (중첩을 사용해야하면) 가급적 if 문으로 변환해서 가독성을 높이는 것이 더 좋다
+// if 문으로 바꾸기
+
+if (score >= 90) {
+  console.log("A+");
+} else if (score >= 50) {
+  console.log("B+");
+} else {
+  console.log("F");
+}
