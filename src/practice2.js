@@ -513,3 +513,42 @@ bPromiseResult
 //     })
 //   })
 // });
+
+// 9. async & await 직관적으로 비 동기 처리 코드 작성하기
+// async
+function hello() {
+  return "hello";
+}
+
+async function helloAsync() {
+  // 프로미스를 반환하고 있네..?
+  return "hello Ascync";
+}
+
+console.log(hello());
+helloAsync().then((res) => {
+  console.log(res);
+});
+
+// await
+function delay(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+async function helloAsyncD() {
+  await delay(3000); // await 줄은 동기적으로
+  return "hello delay";
+}
+
+helloAsyncD().then((res) => {
+  console.log(res);
+});
+
+// 메인함수 만들기
+async function main() {
+  const res = await helloAsyncD();
+  console.log(res);
+}
+
+main();
