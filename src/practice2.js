@@ -101,3 +101,30 @@ if (score >= 90) {
 } else {
   console.log("F");
 }
+
+// 3. 단락 회로 평가
+// 논리 연산자를 활용한 단락 회로 평가
+
+// 논리 연산자 복습
+// AND 둘 다 참일 때만 참
+console.log(true && true);
+
+// OR 둘 중 하나라도 참이면 참
+console.log(true || false);
+
+// NOT
+console.log(!false);
+
+// 단락 회로 평가는?
+console.log(false && true); // 이미 앞이 false 이므로 false
+// 뒤에 위치한 피연산자를 확인할 필요 없이 그냥 연산을 끝내버리는 것을 단락 회로 평가라고 한다
+
+// 함수를 포함한 프로그램 예제
+const gName = (people) => {
+  const v = people && people.name; // true && true 라서 person.name 값을 반환
+  return v || "객체가 아닙니다"; // OR 에서 이미 앞이 True 기 때문에 더 볼필요 없이 v 반환
+};
+
+let people = { name: "m-ur-phy" };
+const nm = gName(people);
+console.log(nm);
