@@ -281,6 +281,8 @@ const allCookies = [
 ];
 console.log(allCookies);
 
+/* 콜백 지옥 실습용 각주 시작~~₩₩₩~~~₩₩~₩~~~~~₩₩₩~₩₩
+
 // 7. 동기 & 비동기
 // 순서대로 실행하는 것과 그렇지 않은 것들
 
@@ -372,3 +374,142 @@ taska(4, 5, (a_res) => {
     });
   });
 });
+
+// 8. Promise 콜백 지옥에서 탈출하기
+
+// 2초 뒤에 전달 받은 값이 양수인지 음수인지 판단하는 비동기작업
+function isPositive(number, resolve, reject) {
+  setTimeout(() => {
+    if (typeof number === "number") {
+      // 성공 -> resolve
+      resolve(number >= 0 ? "양수" : "음수");
+    } else {
+      // 실패 -> reject
+      reject("주어진 값이 숫자형 값이 아닙니다");
+    }
+  }, 2000);
+}
+
+// promise를 사용해서 비동기 처리하기
+function isPositiveP(number) {
+  const executor = (resolve, reject) => {
+    // executor 실행자 함수
+    setTimeout(() => {
+      if (typeof number === "number") {
+        // 성공 -> resolve
+        console.log(number);
+        resolve(number >= 0 ? "양수" : "음수");
+      } else {
+        // 실패 -> reject
+        reject("주어진 값이 숫자형 값이 아닙니다");
+      }
+    }, 2000); // 2초 뒤
+  };
+
+  const asyncTask = new Promise(executor);
+  return asyncTask;
+}
+
+const resul = isPositiveP(101);
+
+resul
+  .then((res) => {
+    console.log("작업 성공 : ", res);
+  })
+  .catch((err) => {
+    console.log("작업 실패 : ", err);
+  });
+
+// isPositive(
+//   10,
+//   (res) => {
+//     console.log("성공적으로 수행됨 : ", res);
+//   },
+//   (err) => {
+//     console.log("실패 하였음 : ", err);
+//   }
+// );
+
+콜백 지옥 실습용 각주 끝 ~~~~₩₩₩~~~~~₩₩₩₩₩₩₩ */
+
+// promise를 이용해서 진짜로 콜백지옥을 탈출해보자!!!!!!!!
+function task1(a, b) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const res = a + b;
+      resolve(res);
+    }, 3000);
+  });
+}
+
+// 1초 뒤에 전달받은 파라미터에 * 2를 하는 함수
+function task2(a) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const res = a * 2;
+      resolve(res);
+    }, 1000);
+  });
+}
+
+function task3(a) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const res = a * -1;
+      resolve(res);
+    }, 2000);
+  });
+}
+
+// then 체이닝 .
+task1(5, 1)
+  .then((a_res) => {
+    console.log("A RESULT : ", a_res);
+    return task2(a_res);
+  })
+  .then((b_res) => {
+    console.log("B RESULT : ", b_res);
+    return task3(b_res);
+  })
+  .then((c_res) => {
+    console.log("C RESULT : ", c_res);
+  });
+
+// 위의 코드를 따로 떼어서 쓸 수도 있다.
+const bPromiseResult = task1(5, 1).then((a_res) => {
+  console.log("A RESULT : ", a_res);
+  return task2(a_res);
+});
+
+console.log("중간에 다른일 하느라 끊어버리기~");
+
+bPromiseResult
+  .then((b_res) => {
+    console.log("B RESULT : ", b_res);
+    return task3(b_res);
+  })
+  .then((c_res) => {
+    console.log("C RESULT : ", c_res);
+  });
+
+// 또 콜백헬인데??? -> 이거 이렇게 쓰는거 아니라그래요
+// task1(5, 1).then((a_res) => {
+//   console.log("A RESUlT : ", a_res);
+//   task2(a_res).then((b_res) => {
+//     console.log("B RESULT : ", b_res);
+//     task3(b_res).then((c_res) => {
+//       console.log("C RESULT : ", c_res);
+//     });
+//   });
+// });
+
+// 콜백 헬~
+// task1(3, 4, (a_res) => {
+//   console.log("task 1 : ", a_res);
+//   task2(a_res, (b_res) => {
+//     console.log("task 2 : ", b_res);
+//     task3(b_res, (c_res) => {
+//       console.log("task 3 : ", c_res);
+//     })
+//   })
+// });
