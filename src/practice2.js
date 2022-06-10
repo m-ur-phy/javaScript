@@ -280,3 +280,95 @@ const allCookies = [
   ...topingCookies
 ];
 console.log(allCookies);
+
+// 7. 동기 & 비동기
+// 순서대로 실행하는 것과 그렇지 않은 것들
+
+// 동기적 방식 예제
+function taskA() {
+  console.log("A 작업 끝");
+}
+
+taskA();
+console.log("코드 끝1");
+
+// 비동기적 방식 예제
+function taskAA() {
+  setTimeout(() => {
+    console.log("AA TASK END");
+  }, 2000); // setTimeout 타이머를 만들 수 있는 내장 비동기함수
+}
+
+taskAA();
+console.log("코드 끝2");
+
+// 예제 2
+function taskAAA(a, b, cb) {
+  setTimeout(() => {
+    const res = a + b;
+    cb(res);
+  }, 3000);
+}
+
+// 1초 뒤에 전달받은 파라미터에 * 2를 하는 함수
+function taskB(a, cb) {
+  setTimeout(() => {
+    const res = a * 2;
+    cb(res);
+  }, 1000);
+}
+
+function taskC(a, cb) {
+  setTimeout(() => {
+    const res = a * -1;
+    cb(res);
+  }, 2000);
+}
+
+taskAAA(3, 4, (res) => {
+  console.log("A TASK RESULT : ", res);
+});
+
+taskB(7, (res) => {
+  console.log("B TASK RESULT : ", res);
+});
+
+taskC(14, (res) => {
+  console.log("C TASK RESULT : ", res);
+});
+
+console.log("코드 끝3");
+
+// 예제 3
+function taska(a, b, cb) {
+  setTimeout(() => {
+    const res = a + b;
+    cb(res);
+  }, 3000);
+}
+
+// 1초 뒤에 전달받은 파라미터에 * 2를 하는 함수
+function taskb(a, cb) {
+  setTimeout(() => {
+    const res = a * 2;
+    cb(res);
+  }, 1000);
+}
+
+function taskc(a, cb) {
+  setTimeout(() => {
+    const res = a * -1;
+    cb(res);
+  }, 2000);
+}
+
+// 야 콜백 지옥이다~~~~~
+taska(4, 5, (a_res) => {
+  console.log("A RESULT : ", a_res);
+  taskb(a_res, (b_res) => {
+    console.log("B RESULT : ", b_res);
+    taskc(b_res, (c_res) => {
+      console.log("C RESULT : ", c_res);
+    });
+  });
+});
